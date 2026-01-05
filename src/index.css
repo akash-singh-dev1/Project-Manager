@@ -1,0 +1,25 @@
+@import "tailwindcss";
+/*target the dialog when it is open*/
+dialog[open] {
+  transition: opacity 0.15s ease-out, transform 0.15s ease-out,
+    display 0.15s ease-out allow-discrete;
+}
+
+/* This defines the "before" state for the entrance animation */
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: translateY(1rem) scale(0.95);
+  }
+}
+
+/* Also animate the backdrop */
+dialog::backdrop {
+  background-color: rgb(0 0 0 / 0%);
+  transition: display 0.15s allow-discrete, overlay 0.15s allow-discrete,
+    background-color 0.15s ease-out;
+}
+
+dialog[open]::backdrop {
+  background-color: rgb(28 25 23 / 0.9); /* stone-900/90 */
+}
