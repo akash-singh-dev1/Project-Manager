@@ -23,6 +23,12 @@ const App = () => {
     tasks: [],
   });
 
+  //state for sidebar.
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  //helper function for sideBar.
+  const openSidebar = () => setIsSidebarOpen(true);
+  const closeSidebar = () => setIsSidebarOpen(false);
+
   //function to add task.
   const handleAddTask = (text) => {
     setProjectsState((prevState) => {
@@ -135,19 +141,21 @@ const App = () => {
   }
   return (
     <main className="min-h-screen my-8 flex gap-4 [border:solid_aqua_5px] relative">
-      {/* <button
+      <button
         type="button"
-        onclick="toggleSidebar()"
+        onClick={openSidebar}
         aria-label="Toggle Menu"
-        className="absolute top-1 left-1 cursor-pointer"
+        className="absolute top-2 left-2 cursor-pointer sm:hidden"
       >
         <img src={menuIcon} alt="menu-icon" className="w-10" />
-      </button> */}
+      </button>
       <ProjectSidebar
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
         onSelectProject={showSelectedProject}
         selectedProjectId={selectedProject?.id}
+        isOpen={isSidebarOpen}
+        onClose={closeSidebar}
       />
       {content}
     </main>

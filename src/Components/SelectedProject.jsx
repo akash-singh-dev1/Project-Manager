@@ -13,7 +13,7 @@ const SelectedProject = ({
   });
   return (
     <div className="px-2 mt-1 mx-auto flex flex-col flex-1 ">
-      <header className="pb-2 mb-2 border-b-2 border-stone-300">
+      <header className=" mt-10 pb-2 mb-2 border-b-2 border-stone-300">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-stone-600 mb-2">
             {project.title}

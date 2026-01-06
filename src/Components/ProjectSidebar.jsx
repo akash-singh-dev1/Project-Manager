@@ -4,14 +4,39 @@ const ProjectSidebar = ({
   projects,
   onSelectProject,
   selectedProjectId,
+  isOpen,
+  onClose,
 }) => {
   return (
-    <aside className=" px-4 py-4 bg-stone-900 text-stone-50  rounded-r-xl flex flex-col items-center ">
+    <aside
+      className={`fixed inset-y-0 left-0 z-40 w-3/4 max-w-xs
+     bg-stone-900 text-stone-50 rounded-r-xl
+      transform transition-transform duration-300 ease-in-out
+      ${isOpen ? "translate-x-0" : "-translate-x-full"}
+      sm:static sm:translate-x-0 sm:w-1/3 sm:rounded-r-xl
+      flex flex-col items-center px-4 py-4
+`}
+    >
+      <button
+        onClick={onClose}
+        className="self-end mb-4 sm:hidden "
+        aria-label="Close sidebar"
+      >
+        ✕
+      </button>
+
       <h2 className="mb-8 uppercase font-bold md:text-xl text-stone-200">
         your projects
       </h2>
       <div className=" p-2 cursor-pointer">
-        <Button onClick={onStartAddProject}>+ Add Project</Button>
+        <Button
+          onClick={() => {
+            onStartAddProject();
+            onClose();
+          }}
+        >
+          + Add Project
+        </Button>
       </div>
       <ul className="mt-2">
         {projects.map((project) => {
@@ -28,7 +53,10 @@ const ProjectSidebar = ({
               <button
                 type="button"
                 className={cssClasses}
-                onClick={() => onSelectProject(project.id)}
+                onClick={() => {
+                  onSelectProject(project.id);
+                  onClose();
+                }}
               >
                 {project.title}
               </button>
