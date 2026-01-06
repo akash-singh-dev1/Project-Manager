@@ -19,7 +19,9 @@ const Modal = ({ children, ref, buttonCaption, onCancel }) => {
     <dialog ref={internalRef} className=" m-auto rounded-lg p-6 shadow-xl">
       {children}
       <form method="dialog" className="mt-4 text-right">
-        <Button onClick={onCancel}>{buttonCaption}</Button>
+        <Button onClick={() => internalRef.current.close()}>
+          {buttonCaption}
+        </Button>
       </form>
     </dialog>,
     document.getElementById("modal-root")

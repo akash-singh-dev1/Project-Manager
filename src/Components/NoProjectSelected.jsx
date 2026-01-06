@@ -2,7 +2,7 @@ import noTaskImage from "../assets/no-projects.png";
 import Button from "./Button";
 const NoProjectSelected = ({ onStartAddProject }) => {
   return (
-    <div className=" flex flex-col gap-8 justify-start items-center mt-8 mx-auto">
+    <div className=" flex flex-col gap-8 justify-start items-center mt-8 mx-auto py-2 px-1">
       <img
         src={noTaskImage}
         className="size-20 object-contain drop-shadow-[5px_5px_10px_rgba(0,0,0,0.5)]"

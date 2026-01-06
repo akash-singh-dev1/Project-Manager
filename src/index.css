@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@source "../src";
+
 /*target the dialog when it is open*/
 dialog[open] {
   transition: opacity 0.15s ease-out, transform 0.15s ease-out,

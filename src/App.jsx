@@ -4,6 +4,7 @@ import NoProjectSelected from "./Components/NoProjectSelected";
 import ProjectSidebar from "./Components/ProjectSidebar";
 import { useState } from "react";
 import SelectedProject from "./Components/SelectedProject";
+import menuIcon from "./assets/menu.png";
 
 const App = () => {
   /* state which is a object which consist of two property 1) selectedProjectId and 2) projects.
@@ -19,7 +20,33 @@ const App = () => {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
+
+  //function to add task.
+  const handleAddTask = (text) => {
+    setProjectsState((prevState) => {
+      const newTask = {
+        text: text,
+        projectId: prevState.selectedProjectId,
+        id: crypto.randomUUID(),
+      };
+      return {
+        ...prevState,
+        tasks: [...prevState.tasks, newTask],
+      };
+    });
+  };
+
+  //function to delete task.
+  const handleDeleteTask = (idToDelete) => {
+    setProjectsState((prevState) => {
+      return {
+        ...prevState,
+        tasks: prevState.tasks.filter((task) => task.id !== idToDelete),
+      };
+    });
+  };
 
   //function to open CreateNewProject component when we click on the button Add Project.
   function handleStartAddProject() {
@@ -94,6 +121,9 @@ const App = () => {
     <SelectedProject
       project={selectedProject}
       onProjectDelete={handleDeleteProject}
+      onAddTask={handleAddTask}
+      onDeleteTask={handleDeleteTask}
+      tasks={projectsState.tasks}
     />
   );
   if (projectsState.selectedProjectId === null) {
@@ -104,7 +134,15 @@ const App = () => {
     content = <NoProjectSelected onStartAddProject={handleStartAddProject} />;
   }
   return (
-    <main className="h-screen my-8 flex gap-8 [border:solid_aqua_5px]">
+    <main className="min-h-screen my-8 flex gap-4 [border:solid_aqua_5px] relative">
+      {/* <button
+        type="button"
+        onclick="toggleSidebar()"
+        aria-label="Toggle Menu"
+        className="absolute top-1 left-1 cursor-pointer"
+      >
+        <img src={menuIcon} alt="menu-icon" className="w-10" />
+      </button> */}
       <ProjectSidebar
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}
