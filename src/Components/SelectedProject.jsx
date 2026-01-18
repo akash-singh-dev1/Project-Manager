@@ -1,10 +1,9 @@
 import Tasks from "./Tasks";
 const SelectedProject = ({
   project,
-  onProjectDelete,
+  onDeleteProject,
   onAddTask,
   onDeleteTask,
-  tasks,
 }) => {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-us", {
     year: "numeric",
@@ -19,7 +18,7 @@ const SelectedProject = ({
             {project.title}
           </h1>
           <button
-            onClick={() => onProjectDelete(project.id)}
+            onClick={() => onDeleteProject(project.id)}
             className="text-stone-600 hover:text-stone-950"
           >
             Delete
@@ -30,7 +29,7 @@ const SelectedProject = ({
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
+      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={project.tasks} />
     </div>
   );
 };

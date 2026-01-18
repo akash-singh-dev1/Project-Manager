@@ -9,11 +9,11 @@ const ProjectSidebar = ({
 }) => {
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-40 w-3/4 max-w-xs
+      className={`fixed inset-y-0 left-0 z-40 w-full 
      bg-stone-900 text-stone-50 rounded-r-xl
       transform transition-transform duration-300 ease-in-out
       ${isOpen ? "translate-x-0" : "-translate-x-full"}
-      sm:static sm:translate-x-0 sm:w-1/3 sm:rounded-r-xl
+      sm:static sm:translate-x-0 sm:w-1/4 sm:rounded-r-xl
       flex flex-col items-center px-4 py-4
 `}
     >
