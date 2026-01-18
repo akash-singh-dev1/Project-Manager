@@ -8,7 +8,17 @@ const ProjectsContext = createContext(null);
 // Load state ONCE from localStorage (lazy init)
 function init(initialState) {
   const storedState = localStorage.getItem("projectsState");
-  return storedState ? JSON.parse(storedState) : initialState;
+
+  if (!storedState) {
+    return initialState;
+  }
+
+  const parsedState = JSON.parse(storedState);
+
+  return {
+    ...parsedState,
+    selectedProjectId: undefined, //  always reset on app open
+  };
 }
 
 export const ProjectsProvider = ({ children }) => {
